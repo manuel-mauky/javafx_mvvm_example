@@ -1,6 +1,5 @@
 package de.saxsys.todolist;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -20,6 +19,8 @@ public class TodolistView {
     
     public void initialize() {
         todoListview.setItems(viewModel.todoItems());
+        viewModel.selectedIndex().bind(todoListview.getSelectionModel().selectedIndexProperty());
+     
         newItemText.textProperty().bindBidirectional(viewModel.newItemTextProperty());
         
         addButton.disableProperty().bind(viewModel.addButtonDisabledProperty());
@@ -27,5 +28,9 @@ public class TodolistView {
     
     public void add() {
         viewModel.addItem();
+    }
+
+    public void delete() {
+        viewModel.deleteItem();
     }
 }
