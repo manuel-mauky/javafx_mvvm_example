@@ -27,10 +27,14 @@ public class TodolistView {
         
         addButton.disableProperty().bind(viewModel.addButtonDisabledProperty());
         deleteButton.disableProperty().bind(viewModel.deleteButtonDisabledProperty());
+        
+        newItemText.setOnAction(e -> viewModel.addItem());
     }
     
     public void add() {
         viewModel.addItem();
+        
+        newItemText.requestFocus();
     }
 
     public void delete() {

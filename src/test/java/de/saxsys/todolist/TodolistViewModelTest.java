@@ -30,6 +30,19 @@ public class TodolistViewModelTest {
     }
     
     @Test
+    public void emptyItemCannotBeAdded() {
+        // given
+        viewModel.newItemTextProperty().set("");
+        
+        
+        // when
+        viewModel.addItem();
+        
+        // then
+        assertThat(viewModel.todoItems()).doesNotContain("").isEmpty();
+    }
+    
+    @Test
     public void addButtonIsDisabledWhenTextfieldIsEmpty() {
         // given
         assertThat(viewModel.newItemTextProperty().get()).isEmpty();

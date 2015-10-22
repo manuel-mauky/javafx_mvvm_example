@@ -28,9 +28,13 @@ public class TodolistViewModel {
     }
     
     public void addItem() {
-        items.add(newItemText.get());
+        String value = newItemText.get();
         
-        newItemText.set("");
+        if(value != null && !value.trim().isEmpty()) {
+            items.add(value);
+            
+            newItemText.set("");
+        }
     }
     
     public void deleteItem() {
