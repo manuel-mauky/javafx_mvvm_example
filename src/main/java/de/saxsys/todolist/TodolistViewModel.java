@@ -16,12 +16,15 @@ public class TodolistViewModel {
     private ObservableList<String> items = FXCollections.observableArrayList();
     
     private ReadOnlyBooleanWrapper addButtonDisabled = new ReadOnlyBooleanWrapper();
+    private ReadOnlyBooleanWrapper deleteButtonDisabled = new ReadOnlyBooleanWrapper();
     
     private IntegerProperty selectedIndex = new SimpleIntegerProperty();
     
     
     public TodolistViewModel() {
         addButtonDisabled.bind(newItemText.isEmpty());
+        
+        deleteButtonDisabled.bind(selectedIndex.isEqualTo(-1));
     }
     
     public void addItem() {
@@ -47,6 +50,10 @@ public class TodolistViewModel {
     
     public ReadOnlyBooleanProperty addButtonDisabledProperty() {
         return addButtonDisabled.getReadOnlyProperty();
+    }
+    
+    public ReadOnlyBooleanProperty deleteButtonDisabledProperty() {
+        return deleteButtonDisabled.getReadOnlyProperty();
     }
     
     public IntegerProperty selectedIndex() {

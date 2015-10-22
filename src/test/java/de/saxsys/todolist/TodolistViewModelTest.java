@@ -68,4 +68,42 @@ public class TodolistViewModelTest {
         // then
         assertThat(viewModel.todoItems()).containsOnly("hello");
     }
+    
+    
+    @Test
+    public void deleteButtonIsDisabledWhenNothingIsSelected() {
+        // given
+        viewModel.newItemTextProperty().set("hello");
+        viewModel.addItem();
+
+        viewModel.newItemTextProperty().set("world");
+        viewModel.addItem();
+
+        assertThat(viewModel.todoItems()).contains("hello", "world");
+        
+        // when
+        viewModel.selectedIndex().set(-1);
+        
+        // then
+        assertThat(viewModel.deleteButtonDisabledProperty().get()).isTrue();
+    }
+    
+    @Test
+    public void deleteButtonIsEnabledWhenAnItemIsSelected() {
+        // given
+        viewModel.newItemTextProperty().set("hello");
+        viewModel.addItem();
+
+        viewModel.newItemTextProperty().set("world");
+        viewModel.addItem();
+
+        assertThat(viewModel.todoItems()).contains("hello", "world");
+        
+        // when
+        viewModel.selectedIndex().set(0);
+        
+        // then
+        assertThat(viewModel.deleteButtonDisabledProperty().get()).isFalse();
+        
+    }
 }

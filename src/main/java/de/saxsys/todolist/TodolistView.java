@@ -14,6 +14,8 @@ public class TodolistView {
     public ListView<String> todoListview;
     @FXML
     public Button addButton;
+    @FXML
+    public Button deleteButton;
 
     private TodolistViewModel viewModel = new TodolistViewModel();
     
@@ -24,6 +26,7 @@ public class TodolistView {
         newItemText.textProperty().bindBidirectional(viewModel.newItemTextProperty());
         
         addButton.disableProperty().bind(viewModel.addButtonDisabledProperty());
+        deleteButton.disableProperty().bind(viewModel.deleteButtonDisabledProperty());
     }
     
     public void add() {
