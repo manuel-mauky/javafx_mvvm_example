@@ -13,12 +13,16 @@ public class TodolistView {
     public TextField newItemText;
     @FXML
     public ListView<String> todoListview;
+    @FXML
+    public Button addButton;
 
     private TodolistViewModel viewModel = new TodolistViewModel();
     
     public void initialize() {
         todoListview.setItems(viewModel.todoItems());
         newItemText.textProperty().bindBidirectional(viewModel.newItemTextProperty());
+        
+        addButton.disableProperty().bind(viewModel.addButtonDisabledProperty());
     }
     
     public void add() {

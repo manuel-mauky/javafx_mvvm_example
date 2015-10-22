@@ -28,4 +28,25 @@ public class TodolistViewModelTest {
         assertThat(viewModel.todoItems()).contains("test my code");
         assertThat(viewModel.newItemTextProperty().get()).isEmpty();
     }
+    
+    @Test
+    public void addButtonIsDisabledWhenTextfieldIsEmpty() {
+        // given
+        assertThat(viewModel.newItemTextProperty().get()).isEmpty();
+        assertThat(viewModel.addButtonDisabledProperty().get()).isTrue();
+        
+        // when
+        viewModel.newItemTextProperty().set("test my code");
+        
+        // then
+        assertThat(viewModel.addButtonDisabledProperty().get()).isFalse();
+        
+        
+        // when
+        viewModel.newItemTextProperty().set("");
+        
+        
+        // then
+        assertThat(viewModel.addButtonDisabledProperty().get()).isTrue();
+    }
 }
